@@ -4,10 +4,15 @@ services:
     image: postgres
     container_name: db_postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
     restart: always
     environment:
       POSTGRES_PASSWORD: 12345678
       PGDATA: /var/lib/postgresql/data/pgdata
-    volumes: 
+    volumes:
       - ./data:/var/lib/postgresql/data
+    networks:
+      - postgres_network
+networks:
+  postgres_network:
+    external: true
